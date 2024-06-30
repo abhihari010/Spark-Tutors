@@ -202,7 +202,8 @@ section {
 
 .offer-main{
     text-align: center;
-    margin-top: 40px;
+    margin-top: 20px;
+    margin-bottom : 30px;
     font-family: Trattatello, fantasy;
 }
 .wrap{
@@ -241,9 +242,43 @@ section {
     text-align: center;
 }
 #contact{
-    background-color: rgb(200, 200, 250);
+    background-color: beige;
     display : flex;
     justify-content: center;
     align-items: center;
     
+}
+
+#contact-form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+}
+
+#contact-form label{
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+#contact-form input, form textarea {
+    margin-bottom: 1em;
+    padding: 0.75em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#contact-form button {
+    background-color: transparent;
+    color: black;
+    padding: 1em;
+    border-color:#0e0731;
+    font-family : rubik;
+    font-size : 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#contact-form button:hover{
+    background-color: rgb(91, 91, 219);
 }
