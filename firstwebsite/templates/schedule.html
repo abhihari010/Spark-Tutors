@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% block title %}
+    Schedule
+{% endblock %}
+
+{% block main %}
+<div class="schedule-cover">
+    <div class="schedule-container">
+        <header class="schedule-header">
+            <h1>Your Class Schedule</h1>
+        </header>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Tutor</th>
+                    <th>Date</th>
+                    <th>Zoom Meeting ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appt in schedule %}
+                <tr>
+                    <th>Pranav Jithesh</th>
+                    <th>{{ appt.date.strftime("%B %d, %Y %I:%M %p") }}</th>
+                    <th>452 899 0105</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

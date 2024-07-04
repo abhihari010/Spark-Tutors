@@ -8,19 +8,28 @@
 
 {% block main %}
     <div class="register-body">
-        <div class="wrapper">
+        <div class="first-reg">
             <form action="/register" method="post">
                 <h1 id="reg-title">Register</h1>
                 <div class="reg">
-                    <input id="reg1" type="email" placeholder="Email" name="email" autofocus required>
+                    <input type="email" placeholder="Email" name="email" autofocus required>
                 </div>
-                <div  class="reg"> 
-                    <input id="reg2" type="password" placeholder="Password" required name=password">
+                <div class="reg">
+                    <input type="text" placeholder="Username" name="username" autofocus required>
                 </div>
-                <div " class="reg">
-                    <input id="reg3 type="password" placeholder="Confirm Password" required name="confirmation">
+                <div class="reg"> 
+                    <input type="password" placeholder="Password" required name="password">
                 </div>
-                <button id="regbtn" class="btn" type="submit" onclick="changeTitle">Register</button>
+                <div class="reg">
+                    <input type="password" placeholder="Confirm Password" required name="confirmation">
+                </div>
+                <div class="reg">
+                    <input type="text" placeholder="Name" required name="name">
+                </div>
+                <div class="reg">
+                    <input type="text" placeholder="Grade (Number)" required name="grade">
+                </div>
+                <button id="regbtn" class="btn reg-btn1" type="submit">Register</button>
                 <div class="new-acc">
                     <p>Already have an account? <a href="/login">Login</a></p>
                 </div>

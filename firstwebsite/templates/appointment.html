@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block title %}
+    Appointment
+{% endblock %}
+
+{% block main %}
+<div class="appointment-cover">
+    <div class="appointment-container">
+        <h1>Schedule an Appointment</h1>
+        <form id="appointment-form" method="post" action="/appointment">    
+            <label for="email">Username:</label>
+            <input type="text" id="username" name="username" required placeholder="Confirm Username">
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Time:</label>
+            <select id="time" name="time" required>
+                <option value="" disabled selected>Select a time</option>
+            </select>
+
+            <button type="submit">Book Appointment</button>
+        </form>
+
+        <p id="restriction-message" class="hidden">Sorry, appointments are not available on weekends.</p>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='index.js') }}"></script>
+{% endblock %}

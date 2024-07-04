@@ -19,16 +19,19 @@ body{
 {
     color: hsl(206, 100%, 64%); 
 }
-.navbar-custom{
-    background-color: #333333;
-}
+
 section {
     padding: 20px;
     margin: 10px;
-    background: #fff;
 }
 
-
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1.0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
 
 #home{
     background-color: #3e5674;
@@ -49,18 +52,22 @@ section {
     color: white;
     padding-top : 570px;
     background-position: right;
+}
+.second-line{
+    margin-right : 10px;
 
 }
-#about{
-    text-align: center;
+#navbarSupportedContent{
+    font-weight : bold;
+    font-size: 18px;
 }
+
 #about .container p{
     font-family : rubik;
     font-size : 25px;
 }
 .container h2{
     font-weight : bold;
-    text-align: center;
 }
 .tutor-img{
     width: 100%;
@@ -96,26 +103,25 @@ section {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: rgb(164, 166, 232);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);    background-repeat: no-repeat;
 }
 
-.wrapper{
+.first-reg{
     width: 420px;
     background : white;
     color : black;
     border-radius: 15px;
     padding : 30px 40px;
+
+
 }
 
-.wrapper h1{
+.first-reg h1{
     font-size: 36px;
     text-align: center;
 }
 
-.wrapper .reg{
+.first-reg .reg{
     width: 100%;
     height : 50px;
     margin : 30px 0;
@@ -138,7 +144,7 @@ section {
     color : black;
 
 }
-.wrapper .btn{
+.first-reg .btn{
     width : 100%;
     height : 40px;
     background-color: #583af2;
@@ -151,11 +157,11 @@ section {
     font-weight: 600;   
 }
 
-.wrapper .btn:hover{
+.first-reg .btn:hover{
     background-color: rgb(156, 223, 223);
 }
 
-.wrapper .prev-acc{
+.first-reg .prev-acc{
     font-size: 14px;
     text-align: center;
     margin-top: 20px;
@@ -171,7 +177,7 @@ section {
     text-decoration: underline;
 }
 
-.wrapper .new-acc{
+.first-reg .new-acc{
     font-size: 14px;
     text-align: center;
     margin-top: 20px;
@@ -196,7 +202,6 @@ section {
     margin-top: 0px;
     margin-bottom: 0px;
 }
-
 
 
 
@@ -234,6 +239,7 @@ section {
     margin-top : 10px;
     text-align: center;
 }
+
 .box-det p{
     font-size: 15px;
     color : black;
@@ -241,9 +247,16 @@ section {
     margin-bottom : 20px;
     text-align: center;
 }
+.contact-content{
+    background-image: url("../static/contactback.jpg");
+    background-size: cover;
+    min-height: 100vh;
+    margin-top: 0px;
+}
+.contact-container h2{
+    text-align: center;
+}
 #contact{
-    background-color: beige;
-    display : flex;
     justify-content: center;
     align-items: center;
     
@@ -267,6 +280,7 @@ section {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
 #contact-form button {
     background-color: transparent;
     color: black;
@@ -281,4 +295,300 @@ section {
 
 #contact-form button:hover{
     background-color: rgb(91, 91, 219);
+}
+.contact-sub{
+    text-align: center;
+    margin-top: 30px;
+}
+.contact-sub p{
+    font-size: 20px;
+    font-family: poppins;
+    font-weight: bold;
+}
+
+
+.plans-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    height: 120vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    background-image: url("../static/plansback.jpg");
+    background-size: cover;
+}
+.title {
+    margin-bottom: 20px;
+    color: whitesmoke;
+    font-family:'Courier New', Courier, monospace ;
+    font-weight: bolder;
+}
+.subtitle{
+    margin-top: 50px;
+    color : rgb(236, 236, 43);
+    font-family:'Courier New', Courier, monospace ;
+    font-weight: bolder;
+}
+.description{
+    color : whitesmoke;
+    font-size : 18px;
+    font-family :'Courier New', Courier, monospace;
+    font-weight : bolder;
+
+}
+.flashcard-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center; 
+}
+.flashcard {
+    width: 370px;
+    height: 500px;
+    perspective: 1000px;
+}
+.flashcard-front h3{
+    font-size: 20px;
+}
+.flashcard-front h4{
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.flashcard-front p{
+    font-size: 18px;
+}
+
+
+.flashcard-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding : 20px;
+}
+
+.flashcard-front {
+    background-color: #ffffff;
+}
+
+.essay-guide{
+    margin-bottom: 20px;
+}
+
+.flashcard-front:hover{
+    cursor: pointer;
+    transform: translateY(-10%);
+}
+#message1{
+    padding-bottom: 50px;
+}
+.appointment-cover {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.appointment-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+.appointment-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.appointment-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.appointment-container label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.appointment-container input, select {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.appointment-container button {
+    padding: 10px;
+    background-color: rgb(64, 64, 199);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.appointment-container button:hover {
+    background-color: #218838;
+}
+
+.appointment-container .confirmation {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.appointment-container .hidden {
+    display: none;
+}
+#restriction-message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+.schedule-cover {
+    background-color: beige;
+    color: #333;
+}
+
+.schedule-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.schedule-header h1 {
+    font-size: 2.5em;
+    color: #4a4a4a;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.schedule-table th, .schedule-table td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #e1e1e1;
+}
+
+.schedule-table thead {
+    background-color: #333;
+    color: #fff;
+}
+
+.schedule-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.schedule-table tbody tr:nth-child(even) {
+    background-color: #fff;
+}
+
+.schedule-table .event {
+    background-color: #ffc107;
+    color: #333;
+    font-weight: bold;
+}
+
+.schedule-table th {
+    background-color: #4a4a4a;
+    color: white;
+}
+
+.account-cover {
+    font-family: Arial, sans-serif;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.account-container {
+    background-color: #7982d8;
+    width : 600px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.account-container h1 {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.account-container button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.account-container button:hover {
+    background-color: #6866dd;
+}
+
+.message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+.account-icon{
+    margin-right : 20px;
+    margin-left : 10px;
+}
+.edit{
+    margin-bottom : 15px;
+    font-size : 12px;
 }

@@ -1,17 +1,24 @@
 {% extends "index.html" %}
 
 {% block title %}
-    Login
+    Contact
 {% endblock %}
 
 
 
 {% block main %}
+<div class="contact-content">
     <h2 class="offer-main">If you have further questions feel free to reach out below!</h2>
     <section id="contact">
-        <div class="container">
+        <div class="contact-container">
             <h2>Contact Us</h2>
             <form id="contact-form" action="/contact" method="post">
+            {% if session["user_id"] %}
+                <label>Message:</label>
+                <textarea id="message1" name="message" required placeholder="Message"></textarea>
+                
+                <button type="submit">Submit</button>
+            {% else %}
                 <label>Name:</label>
                 <input type="text" id="name" name="name" required placeholder="Name">
                 
@@ -23,9 +30,14 @@
                 
                 <button type="submit">Submit</button>
             </form>
+            {% endif %}
+            <div class="contact-sub">
+                <h3>Direct Contact:</h3>
+                <p><i class="fa-sharp fa-solid fa-phone"></i> Phone: (732) 402-4124</p>
+                <p><i class="fa-solid fa-envelope"></i> Email: sparktutorscoaching@gmail.com</p>
+            </div>
         </div>
     </section>
-    <div>
-        <h3>Other Methods</h3>
-    </div>
+</div>
+
 {% endblock %}
