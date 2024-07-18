@@ -10,6 +10,8 @@
         <header class="schedule-header">
             <h1>Your Class Schedule</h1>
         </header>
+        <div><button id="reschedule" class="btn btn-primary reschedule">Reschedule</button></div>
+        <p class="reschedule-noti" id="reschedule-noti"></p>
         <table class="schedule-table">
             <thead>
                 <tr>
@@ -21,7 +23,15 @@
             <tbody>
                 {% for appt in schedule %}
                 <tr>
-                    <th>Pranav Jithesh</th>
+                    <th class="reschedule-cell">
+                        <div class="button-container">
+                            <form method="post" action="/schedule">
+                                <input type="hidden" name="appointment_id" value="{{ appt.id }}">
+                                <button type="submit" class="btn btn-danger reschedule-button" hidden disabled>Reschedule</button>
+                            </form>
+                            <span class="tutor-name">Pranav Jithesh</span>
+                        </div>
+                    </th>
                     <th>{{ appt.date.strftime("%B %d, %Y %I:%M %p") }}</th>
                     <th>452 899 0105</th>
                 </tr>
@@ -30,4 +40,5 @@
         </table>
     </div>
 </div>
+
 {% endblock %}

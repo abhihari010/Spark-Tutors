@@ -9,7 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = "sachu"
 db = SQLAlchemy(app)
-app.permanent_session_lifetime = timedelta(hours=2)
+app.permanent_session_lifetime = timedelta(minutes=10)
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -41,17 +41,6 @@ def homepage():
 @app.route('/offer')
 def offer():
     return render_template("offer.html")
-
-@app.route('/schedule')
-def schedule():
-    user = User.query.filter_by(id=session["user_id"]).first()
-    if user:
-        schedule = Schedule.query.filter_by(email=user.email).all()  # Fetch all schedules for the user
-        return render_template("schedule.html", schedule=schedule)
-    else:
-        flash("User not found", category="error")
-        return redirect("/")
-
 
 
 @app.route("/appointment", methods=['GET', 'POST'])
@@ -87,14 +76,22 @@ def appointment():
             valid_date = datetime.strptime(date, '%Y-%m-%d').date()
             valid_time = datetime.strptime(time, '%I:%M %p').time()
             valid_datetime = datetime.combine(valid_date, valid_time)
+            current_datetime = datetime.now()
+
+            if valid_datetime <= current_datetime:
+                flash("You cannot schedule an appointment in the past", category="error")
+                return render_template("appointment.html")
+
         except ValueError:
             flash("Invalid date or time format", category="error")
             return redirect("/")
         
         appt = Schedule.query.filter_by(date=valid_datetime).first()
+
         if appt:
             flash("An appointment already exists at this time. Please choose another time.", category="error")
             return render_template("appointment.html")
+        
         new_appt = Schedule(email=user.email, date=valid_datetime)
         db.session.add(new_appt)
         db.session.commit()
@@ -176,6 +173,7 @@ def login():
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
+        remember=request.form.get("remember")
 
         if not email:
             flash("Please enter a valid email", category="error")
@@ -192,8 +190,13 @@ def login():
         if not check_password_hash(user.password, password):
             flash("Password is incorrect", category="error")
             return render_template("login.html")
-
+        
         session.permanent = True
+        if remember:
+            app.permanent_session_lifetime = timedelta(days=100)
+        else:
+            app.permanent_session_lifetime = timedelta(minutes=10)
+
         session["user_id"] = user.id
         flash("Logged In!", category="success")
         return redirect("/")
@@ -294,6 +297,17 @@ def account():
             flash("Please enter your grade", category="error")
             return render_template("account.html")
         
+        check_email = User.query.filter_by(email=email).first()
+        if check_email:
+            flash("Email already exists.", category="error")
+            return render_template("register.html")
+        
+        check_username = User.query.filter_by(username=username).first()
+        if check_username:
+            flash("Username already exists.", category="error")
+            return render_template("register.html")
+
+        
         user = User.query.filter_by(id=session["user_id"]).first()
         user.username = username
         user.email = email
@@ -309,6 +323,43 @@ def account():
         user = User.query.filter_by(id=session["user_id"]).first()
         return render_template("account.html", user=user)
 
+
+@app.route('/schedule', methods=['GET', 'POST'])
+def schedule():
+    if request.method == "POST":
+        if "user_id" not in session:
+            flash("You need to be logged in to delete an appointment.", category="error")
+            return redirect("/login")
+        
+        appointment_id = request.form.get('appointment_id')
+        if not appointment_id:
+            flash("Invalid appointment ID.", category="error")
+            return redirect("/schedule")
+        
+        user = User.query.filter_by(id=session["user_id"]).first()
+        if not user:
+            flash("User not found", category="error")
+            return redirect("/")
+        
+        appointment = Schedule.query.filter_by(id=appointment_id, email=user.email).first()
+        if appointment:
+            db.session.delete(appointment)
+            db.session.commit()
+            flash("Appointment successfully deleted.", category="success")
+        else:
+            flash("Appointment not found or you do not have permission to delete it.", category="error")
+            
+        return redirect("/appointment")
+
+
+    else:
+        user = User.query.filter_by(id=session["user_id"]).first()
+        if user:
+            schedule = Schedule.query.filter_by(email=user.email).all() 
+            return render_template("schedule.html", schedule=schedule)
+        else:
+            flash("User not found", category="error")
+            return redirect("/")
 
 @app.route('/crash')
 def main():

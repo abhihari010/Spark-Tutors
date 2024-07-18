@@ -1,4 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Reschedule functionality
+    const rescheduleButton = document.getElementById("reschedule");
+    const rescheduleNoti = document.getElementById("reschedule-noti");
+
+    if (rescheduleButton && rescheduleNoti) {
+        rescheduleButton.addEventListener('click', () => {
+            rescheduleNoti.innerHTML = "Choose an appointment to reschedule";
+            const rescheduleButtons = document.querySelectorAll(".reschedule-button");
+            rescheduleButtons.forEach(button => {
+                button.hidden = false;
+                button.disabled = false;
+            });
+        });
+    }
+
     const form = document.getElementById('appointment-form');
     const dateInput = document.getElementById('date');
     const timeSelect = document.getElementById('time');
@@ -8,10 +23,30 @@ document.addEventListener('DOMContentLoaded', function() {
         '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM'
     ];
 
-    if (dateInput && timeSelect) {
+    if (dateInput && timeSelect && restrictionMessage) {
         dateInput.addEventListener('input', function() {
             const selectedDate = dateInput.value;
             if (!selectedDate) return;
+
+            const currentDate = new Date();
+            const selectedDateObj = new Date(selectedDate);
+
+            let currentTime = null;
+            if (selectedDateObj.toDateString() === currentDate.toDateString()) {
+                currentTime = currentDate;
+            }
+
+            if (selectedDateObj < currentDate.setHours(0, 0, 0, 0)) {
+                restrictionMessage.textContent = "You cannot select a past date.";
+                restrictionMessage.classList.remove('hidden');
+                dateInput.setCustomValidity("You cannot select a past date.");
+                timeSelect.disabled = true;
+                return;
+            } else {
+                restrictionMessage.classList.add('hidden');
+                dateInput.setCustomValidity("");
+                timeSelect.disabled = false;
+            }
 
             fetch(`/appointments?date=${selectedDate}`)
                 .then(response => response.json())
@@ -22,19 +57,19 @@ document.addEventListener('DOMContentLoaded', function() {
                         const option = document.createElement('option');
                         option.value = time;
                         option.textContent = time;
-                        if (bookedTimes.includes(time)) {
+
+                        const [hours, minutes, period] = time.match(/(\d+):(\d+) (\w+)/).slice(1);
+                        let timeDate = new Date(selectedDateObj);
+                        timeDate.setHours(period === 'PM' ? parseInt(hours) + 12 : parseInt(hours));
+                        timeDate.setMinutes(minutes);
+
+                        if (bookedTimes.includes(time) || (currentTime && timeDate < currentTime)) {
                             option.disabled = true;
                         }
+
                         timeSelect.appendChild(option);
                     });
                 });
-        });
-
-        availableTimes.forEach(time => {
-            const option = document.createElement('option');
-            option.value = time;
-            option.textContent = time;
-            timeSelect.appendChild(option);
         });
 
         dateInput.addEventListener('input', function() {
@@ -48,7 +83,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 dateInput.setCustomValidity("");
             }
         });
+
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
     }
+
     const editButton = document.getElementById('edit');
     const updateButton = document.getElementById('update');
     const usernameInput = document.getElementById('username');
@@ -56,14 +95,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const nameInput = document.getElementById('name');
     const gradeInput = document.getElementById('grade');
 
-    editButton.addEventListener('click', () => {
-        usernameInput.disabled = false;
-        emailInput.disabled = false;
-        nameInput.disabled = false;
-        gradeInput.disabled = false;
-        updateButton.disabled = false;
-    });
+    if (editButton) {
+        editButton.addEventListener('click', () => {
+            if (usernameInput) usernameInput.disabled = false;
+            if (emailInput) emailInput.disabled = false;
+            if (nameInput) nameInput.disabled = false;
+            if (gradeInput) gradeInput.disabled = false;
+            if (updateButton) updateButton.disabled = false;
+        });
+    }
 });
+
+
 
     
 

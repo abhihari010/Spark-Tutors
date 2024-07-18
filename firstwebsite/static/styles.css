@@ -13,7 +13,7 @@ nav .navbar-brand{
 }    
 
 body{
-    background-color: beige;
+    background-color: white;
 }
 .nav-link
 {
@@ -63,7 +63,7 @@ section {
 }
 
 #about .container p{
-    font-family : rubik;
+    font-family : 'Aqua Grotesque', sans-serif;
     font-size : 25px;
 }
 .container h2{
@@ -88,9 +88,9 @@ section {
 .container .btn a{
     text-decoration : none;
     color : black;
-    font-family: rubik;
+    font-family: 'Aqua Grotesque', sans-serif;
     font-weight : bold;
-    font-size : 20px;
+    font-size : 18px;
 }
 .container .btn a:hover{
     text-decoration: underline;
@@ -98,54 +98,112 @@ section {
 
 }
 
-.register-body{
-    display : flex;
+.register-body {
+    display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);    background-repeat: no-repeat;
+    background-color: hsl(206, 100%, 64%);
 }
 
-.first-reg{
-    width: 420px;
-    background : white;
-    color : black;
+.reg-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.svg-container {
+    margin-right: 80px; 
+}
+
+.first-reg {
+    width: 600px;
+    background: white;
+    color: black;
     border-radius: 15px;
-    padding : 30px 40px;
-
-
+    padding: 20px 40px;
 }
 
-.first-reg h1{
+.first-reg h1 {
     font-size: 36px;
     text-align: center;
 }
 
-.first-reg .reg{
+.first-reg form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    height : 50px;
-    margin : 30px 0;
 }
 
-.reg input{
+.reg {
     width: 100%;
-    height : 100%;
-    background : transparent;
-    border : none;
-    outline : none;
-    border : 2px solid black;
+    display: flex;
+    justify-content: center; 
+    margin: 10px 0;
+}
+
+.reg input {
+    width: 80%; 
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid black;
     border-radius: 5px;
     font-size: 20px;
-    color : black;
-    padding : 20px 65px 20px 20px;    
+    color: black;
+    padding: 20px 65px 20px 20px;
+}
 
+#regbtn {
+    width: 80%;
+    height: 40px;
+    background-color: #583af2;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    color: whitesmoke;
+    font-weight: 600;
+    margin: 20px 0; /* Add vertical margin for spacing */
+}
+
+.new-acc {
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; 
+    }
+
+    .svg-container {
+        margin-right: 0;
+        margin-bottom: 20px; 
+    }
+
+    .first-reg {
+        width: 100%; 
+        padding: 20px; 
+    }
+
+    .reg input, #regbtn {
+        width: 90%; 
+    }
+    #remember-checkbox {
+        width: 90%; /* Adjust checkbox container width for smaller screens */
+    }
 }
 .reg input::placeholder{
     color : black;
 
 }
 .first-reg .btn{
-    width : 100%;
+
+    width : 80%;
     height : 40px;
     background-color: #583af2;
     border: none;
@@ -154,7 +212,8 @@ section {
     box-shadow: 0 0 10px rgb(0, 0, 0, 0.1);
     cursor : pointer;
     color: whitesmoke;
-    font-weight: 600;   
+    font-weight: 600;
+    margin : 10px 0;
 }
 
 .first-reg .btn:hover{
@@ -192,6 +251,10 @@ section {
 .new-acc p a:hover{
     text-decoration: underline;
 }
+#login-form h1{
+    margin-bottom : 20px;
+}
+
 .logo-img{
     width : 40px;
     margin-left: 10px;;
@@ -203,13 +266,25 @@ section {
     margin-bottom: 0px;
 }
 
+#remember-checkbox {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    margin: 10px 0;
+}
 
+#remember-checkbox input {
+    margin-right: 10px; 
+}
 
 .offer-main{
     text-align: center;
     margin-top: 20px;
     margin-bottom : 30px;
-    font-family: Trattatello, fantasy;
+    font-family: 'Aqua Grotesque', sans-serif;
+    animation-name : flowIn;
+    animation-duration : 1s;
 }
 .wrap{
     display: flex;
@@ -217,7 +292,14 @@ section {
     flex-wrap: wrap;
     gap:25px;
     margin-top : 50px;
+    animation-name : flowIn;
+    animation-duration: 1s;
+
 }
+@keyframes flowIn{
+    from{transform: translateY(300%)}
+}
+
 .box{
     width: 325px;
     border-radius: 10px;
@@ -243,12 +325,23 @@ section {
 .box-det p{
     font-size: 15px;
     color : black;
-    font-family : rubik;
+    font-family : 'Aqua Grotesque', sans-serif;
     margin-bottom : 20px;
     text-align: center;
 }
+.contact-main{
+    background-image: url("../static/a.png");
+    height : 70vh;
+    width : 100%;
+    text-align: center;
+    background-position-x: 50%;
+    background-position-y : 10%;
+    padding-top : 20px;
+    color : whitesmoke;
+    font-family : 'Aqua Grotesque', sans-serif;
+
+}
 .contact-content{
-    background-image: url("../static/contactback.jpg");
     background-size: cover;
     min-height: 100vh;
     margin-top: 0px;
@@ -286,7 +379,7 @@ section {
     color: black;
     padding: 1em;
     border-color:#0e0731;
-    font-family : rubik;
+    font-family : 'Aqua Grotesque', sans-serif;
     font-size : 20px;
     border-radius: 4px;
     cursor: pointer;
@@ -302,7 +395,7 @@ section {
 }
 .contact-sub p{
     font-size: 20px;
-    font-family: poppins;
+    font-family: 'Aqua Grotesque', sans-serif;
     font-weight: bold;
 }
 
@@ -314,34 +407,43 @@ section {
     align-items: center;
     height: 120vh;
     margin: 0;
-    background-color: #f0f0f0;
-    background-image: url("../static/plansback.jpg");
+    background-color: hsl(206, 100%, 64%); 
     background-size: cover;
+
 }
 .title {
+    margin-top : 10px;
     margin-bottom: 20px;
     color: whitesmoke;
-    font-family:'Courier New', Courier, monospace ;
+    font-family:'Aqua Grotesque', sans-serif;
     font-weight: bolder;
+    animation-name: flowIn;
+    animation-duration: 1s;
 }
 .subtitle{
     margin-top: 50px;
-    color : rgb(236, 236, 43);
-    font-family:'Courier New', Courier, monospace ;
+    color : whitesmoke;
+    font-family:'Aqua Grotesque', sans-serif;
     font-weight: bolder;
+    animation-name: flowIn;
+    animation-duration: 1s;
 }
 .description{
     color : whitesmoke;
     font-size : 18px;
-    font-family :'Courier New', Courier, monospace;
+    font-family :'Aqua Grotesque', sans-serif;
     font-weight : bolder;
+    animation-name: flowIn;
+    animation-duration: 1s;
 
 }
 .flashcard-container {
     display: flex;
     gap: 10px;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
+    animation-name: flowIn;
+    animation-duration: 1s; 
 }
 .flashcard {
     width: 370px;
@@ -390,7 +492,7 @@ section {
     padding-bottom: 50px;
 }
 .appointment-cover {
-    font-family: Arial, sans-serif;
+    font-family:'Aqua Grotesque', sans-serif;
     background-color: #f7f7f7;
     margin: 0;
     padding: 0;
@@ -462,8 +564,7 @@ section {
     margin-top: 20px;
 }
 .schedule-cover {
-    background-color: beige;
-    color: #333;
+    background-color: white;
 }
 
 .schedule-container {
@@ -500,13 +601,7 @@ section {
     color: #fff;
 }
 
-.schedule-table tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
-}
 
-.schedule-table tbody tr:nth-child(even) {
-    background-color: #fff;
-}
 
 .schedule-table .event {
     background-color: #ffc107;
@@ -520,7 +615,7 @@ section {
 }
 
 .account-cover {
-    font-family: Arial, sans-serif;
+    font-family: 'Aqua Grotesque', sans-serif;
     background-color: whitesmoke;
     display: flex;
     justify-content: center;
@@ -591,4 +686,21 @@ section {
 .edit{
     margin-bottom : 15px;
     font-size : 12px;
+}
+
+.reschedule{
+    margin-bottom: 10px;
+}
+
+.reschedule-cell .button-container {
+    display: flex;
+    align-items: center;
+}
+
+.reschedule-cell .reschedule-button {
+    margin-right: 20px; 
+}
+
+.reschedule-cell .tutor-name {
+    display: inline-block;
 }
