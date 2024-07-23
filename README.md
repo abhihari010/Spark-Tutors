@@ -1,5 +1,4 @@
 # SPARK TUTORS
-#### Port: http://127.0.0.1:5000/
 #### Description:
 This project is a website I created for a friends tutoring company. He did not have a website and although he didn't ask me to create one for him, I decided that it would be a great opportunity for me to enhance my coding knowledge in Python, CSS, JS, and HTML. For this website I utilized flask and the sqlalchemy database that is a part of it to store my users info, the messages they send, and the appointments they create.
 
