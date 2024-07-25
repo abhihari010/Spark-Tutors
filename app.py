@@ -1,10 +1,11 @@
 from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
+from firstwebsite import *
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 from datetime import datetime, timezone, timedelta
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='firstwebsite/templates', static_folder="firstwebsite/static")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = "sachu"
