@@ -1,6 +1,6 @@
 # SPARK TUTORS
 #### Description:
-This project is a website I created for a friends tutoring company. He did not have a website and although he didn't ask me to create one for him, I decided that it would be a great opportunity for me to enhance my coding knowledge in Python, CSS, JS, and HTML. For this website I utilized flask and the sqlalchemy database that is a part of it to store my users info, the messages they send, and the appointments they create.
+This project is a website I created for a friends tutoring company. He did not have a website and although he didn't ask me to create one for him, I decided that it would be a great opportunity for me to enhance my coding knowledge in Python, CSS, JS, and HTML. For this website I utilized Python, Flask, and firebases authentication and realtime database to store my users info, the messages they send, and the appointments they create.
 
 #### Templates:
 
@@ -38,7 +38,7 @@ The account page provides the different details of the user and allows them to c
 This javascript file adds to the appointment and account page. The javascript in this file makes it so that when users have chosen a specific time slot on a given day, no other user can choose that time slot on that day. Additionally, it allows user to edit their account details. When first viewing the account details page, a users details are disabled from being changed until they hit edit. The edit button then enables the different text fields for the user to change their details.
 
 ###### app.py:
-This includes all of my python code as well as initiliazing the SQLAlchemy databse with the Message, User, and Schedule tables. It has the various routes for each html page and ensures that each html page is error free. This page also initilizes flask so that the website can actually be viewed.
+This includes all of my python code as well as initiliazing the implementation of firebases authentication system and realtime databse with the Message, User, and Schedule tables. It has the various routes for each html page and ensures that each html page is error free. This page also initilizes flask so that the website can actually be viewed.
 
 ###### styles.css:
 My styles.css provides the styling for all of my html pages and also is what allows the different plan flashcards to move when hovered in the plans page.
