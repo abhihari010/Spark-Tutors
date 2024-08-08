@@ -16,7 +16,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            {% if session["user_id"] %}
+            {% if session.get("user") %}
             <ul class="navbar-nav me-auto mt-2">
 
                 <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>

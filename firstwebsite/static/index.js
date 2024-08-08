@@ -1,19 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Reschedule functionality
-    const rescheduleButton = document.getElementById("reschedule");
-    const rescheduleNoti = document.getElementById("reschedule-noti");
-
-    if (rescheduleButton && rescheduleNoti) {
-        rescheduleButton.addEventListener('click', () => {
-            rescheduleNoti.innerHTML = "Choose an appointment to reschedule";
-            const rescheduleButtons = document.querySelectorAll(".reschedule-button");
-            rescheduleButtons.forEach(button => {
-                button.hidden = false;
-                button.disabled = false;
-            });
-        });
-    }
-
     const form = document.getElementById('appointment-form');
     const dateInput = document.getElementById('date');
     const timeSelect = document.getElementById('time');
@@ -104,9 +89,17 @@ document.addEventListener('DOMContentLoaded', function() {
             if (updateButton) updateButton.disabled = false;
         });
     }
+
+    // Reschedule functionality
+    const rescheduleButtons = document.querySelectorAll(".reschedule-button");
+
+    if (rescheduleButtons) {
+        rescheduleButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const form = event.target.closest('form');
+                form.submit();
+            });
+        });
+    }
 });
-
-
-
-    
-

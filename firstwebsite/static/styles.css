@@ -1,4 +1,4 @@
-
+/* Combined and updated CSS for the entire project */
 *{
     margin: 0px;
     padding : 0px
@@ -565,15 +565,19 @@ section {
 }
 .schedule-cover {
     background-color: white;
+    padding-top: 20px; 
 }
 
 .schedule-container {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
-    background: #ccc;
+    background: #7982d8; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; 
+    margin-top: 20px; 
 }
+
 
 .schedule-header {
     text-align: center;
@@ -600,8 +604,6 @@ section {
     background-color: #333;
     color: #fff;
 }
-
-
 
 .schedule-table .event {
     background-color: #ffc107;

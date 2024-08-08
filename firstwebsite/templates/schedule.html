@@ -7,38 +7,34 @@
 {% block main %}
 <div class="schedule-cover">
     <div class="schedule-container">
-        <header class="schedule-header">
+        <div class="schedule-header">
             <h1>Your Class Schedule</h1>
-        </header>
-        <div><button id="reschedule" class="btn btn-primary reschedule">Reschedule</button></div>
-        <p class="reschedule-noti" id="reschedule-noti"></p>
+        </div>
         <table class="schedule-table">
             <thead>
                 <tr>
+                    <th>Action</th>
                     <th>Tutor</th>
                     <th>Date</th>
                     <th>Zoom Meeting ID</th>
                 </tr>
             </thead>
             <tbody>
-                {% for appt in schedule %}
+                {% for key, appointment in schedule.items() %}
                 <tr>
-                    <th class="reschedule-cell">
-                        <div class="button-container">
-                            <form method="post" action="/schedule">
-                                <input type="hidden" name="appointment_id" value="{{ appt.id }}">
-                                <button type="submit" class="btn btn-danger reschedule-button" hidden disabled>Reschedule</button>
-                            </form>
-                            <span class="tutor-name">Pranav Jithesh</span>
-                        </div>
-                    </th>
-                    <th>{{ appt.date.strftime("%B %d, %Y %I:%M %p") }}</th>
-                    <th>452 899 0105</th>
+                    <td>
+                        <form method="POST" action="/schedule">
+                            <input type="hidden" name="appointment_id" value="{{ key }}">
+                            <button type="submit" class="reschedule-button btn btn-primary">Reschedule</button>
+                        </form>
+                    </td>
+                    <td>{{ appointment.tutor }}</td>
+                    <td>{{ appointment.formatted_date }}</td>
+                    <td>{{ appointment.zoom_meeting_id }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
-
 {% endblock %}
