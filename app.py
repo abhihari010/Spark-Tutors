@@ -275,8 +275,12 @@ def register():
             session['message'] = "Account successfully created! Please verify your email before logging in."
             session['category'] = "success"
             return redirect("/login")
-        except:
-            flash(f"Error creating account", category="error")
+        except Exception as e:
+            error_message = str(e)
+            if "EMAIL_EXISTS" in error_message:
+                flash("This email is already registered. Please log in or use a different email.", category="error")
+            else:
+                flash(f"Error creating account: {error_message}", category="error")
             return render_template("register.html")
 
     return render_template("register.html")
