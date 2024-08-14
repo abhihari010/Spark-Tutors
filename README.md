@@ -1,8 +1,5 @@
 # SPARK TUTORS
-#### How to run:
-This project can be viewed on your local host. First, clone this repo to the directory of your choosing and then navigate to the directory containing the project. Afterwards, set up a virtual environment and download the requirements necessary by pip installing the requirements.txt file. Lastly, in the terminal, type "flask run" to run the website and you will be able to view it on your local host. 
-#### Description:
-This project is a website I created for a friends tutoring company. He did not have a website and although he didn't ask me to create one for him, I decided that it would be a great opportunity for me to enhance my coding knowledge in Python, CSS, JS, and HTML. For this website I utilized Python, Flask, and firebases authentication and realtime database to store my users info, the messages they send, and the appointments they create.
+URl : https://spark-tutors.onrender.com/
 
 #### Templates:
 
