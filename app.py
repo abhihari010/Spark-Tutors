@@ -1,13 +1,11 @@
+import os
 from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime, timezone, timedelta
 from dotenv import load_dotenv
 import pyrebase
-import os
 
-dotenv_path = 'c:/Users/abhih/project1/secret.env'
-if not os.path.exists(dotenv_path):
-    raise FileNotFoundError(f"{dotenv_path} file not found")
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 api_key = os.getenv('API_KEY')
@@ -19,6 +17,12 @@ messaging_sender_id = os.getenv('MESSAGING_SENDER_ID')
 app_id = os.getenv('APP_ID')
 measurement_id = os.getenv('MEASUREMENT_ID')
 
+required_env_vars = ['API_KEY', 'AUTH_DOMAIN', 'DATABASE_URL', 'PROJECT_ID', 
+                     'STORAGE_BUCKET', 'MESSAGING_SENDER_ID', 'APP_ID', 'MEASUREMENT_ID']
+missing_vars = [var for var in required_env_vars if os.getenv(var) is None]
+
+if missing_vars:
+    raise EnvironmentError(f"Missing required environment variables: {', '.join(missing_vars)}")
 
 config = {
     "apiKey": api_key,
@@ -36,7 +40,7 @@ auth = firebase.auth()
 db = firebase.database()
 
 app = Flask(__name__, template_folder='firstwebsite/templates', static_folder='firstwebsite/static')
-app.secret_key = "sachu"
+app.secret_key = os.getenv('SECRET_KEY', 'defaultsecretkey')
 app.permanent_session_lifetime = timedelta(minutes=10)
 
 def get_user_id_token():
