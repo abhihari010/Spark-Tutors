@@ -1,5 +1,8 @@
 # SPARK TUTORS
-URl : https://spark-tutors.onrender.com/
+URL : https://spark-tutors.onrender.com/
+
+#### Description:
+This project is a website I created for a friends tutoring company. He did not have a website and although he didn't ask me to create one for him, I decided that it would be a great opportunity for me to enhance my coding knowledge in Python, CSS, JS, and HTML. For this website I utilized Python, Flask, and firebase's authentication and realtime database to store my users info, the messages they send, and the appointments they create.
 
 #### Templates:
 
