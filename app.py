@@ -225,6 +225,7 @@ def login():
                 app.permanent_session_lifetime = timedelta(minutes=10)
 
             session["user"] = user
+            session["user_id"] = user['localId']
             session["idToken"] = user['idToken']
             flash("Logged In!", category="success")
             return redirect("/")
