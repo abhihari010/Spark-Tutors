@@ -57,7 +57,12 @@ def is_email_verified():
 # Routes
 @app.route('/')
 def homepage():
-    return render_template("loading.html")
+    try:
+        # Example check for server readiness (e.g., pinging the database)
+        db.child("status").get()
+        return render_template("home.html")
+    except Exception:
+        return render_template("loading.html")
 
 @app.route('/offer')
 def offer():
