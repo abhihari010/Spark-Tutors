@@ -57,7 +57,7 @@ def is_email_verified():
 # Routes
 @app.route('/')
 def homepage():
-    return render_template("home.html")
+    return render_template("loading.html")
 
 @app.route('/offer')
 def offer():
